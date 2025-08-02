@@ -1,4 +1,5 @@
 import { motion } from "framer-motion"
+import { SignUpButton } from "@clerk/clerk-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -72,9 +73,11 @@ export function Pricing() {
                     </div>
                   ))}
                 </div>
-                <Button variant="outline" className="w-full">
-                  Get Started Free
-                </Button>
+                <SignUpButton mode="modal">
+                  <Button variant="outline" className="w-full">
+                    Get Started Free
+                  </Button>
+                </SignUpButton>
               </CardContent>
             </Card>
           </motion.div>

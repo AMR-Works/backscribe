@@ -1,4 +1,5 @@
 import { motion } from "framer-motion"
+import { SignUpButton } from "@clerk/clerk-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ArrowRight, Sparkles, Zap } from "lucide-react"
@@ -41,10 +42,12 @@ export function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button variant="hero" size="xl" className="group">
-              Start Creating Free
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
+            <SignUpButton mode="modal">
+              <Button variant="hero" size="xl" className="group">
+                Start Creating Free
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </SignUpButton>
             
             <Button variant="glass" size="xl">
               <Zap className="w-5 h-5 mr-2" />

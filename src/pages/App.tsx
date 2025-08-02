@@ -5,7 +5,7 @@ import { Hero } from "@/components/Hero"
 import { Features } from "@/components/Features"
 import { Pricing } from "@/components/Pricing"
 
-const Index = () => {
+const AppContent = () => {
   return (
     <>
       <SignedOut>
@@ -24,6 +24,8 @@ const Index = () => {
       </SignedIn>
     </>
   )
-};
+}
 
-export default Index;
+const Index = () => {
+  return <AppContent />
+}

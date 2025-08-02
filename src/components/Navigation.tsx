@@ -1,4 +1,5 @@
 import { motion } from "framer-motion"
+import { SignInButton, SignUpButton, useUser } from "@clerk/clerk-react"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
 import { Badge } from "@/components/ui/badge"
@@ -59,12 +60,16 @@ export function Navigation() {
 
             <div className="flex items-center gap-3">
               <ThemeToggle />
-              <Button variant="ghost" size="sm">
-                Sign In
-              </Button>
-              <Button variant="default" size="sm">
-                Get Started
-              </Button>
+              <SignInButton mode="modal">
+                <Button variant="ghost" size="sm">
+                  Sign In
+                </Button>
+              </SignInButton>
+              <SignUpButton mode="modal">
+                <Button variant="default" size="sm">
+                  Get Started
+                </Button>
+              </SignUpButton>
             </div>
           </div>
 
@@ -116,12 +121,16 @@ export function Navigation() {
                 Demo
               </a>
               <div className="flex flex-col gap-2 pt-2 border-t border-border/50">
-                <Button variant="ghost" size="sm" className="justify-start">
-                  Sign In
-                </Button>
-                <Button variant="default" size="sm">
-                  Get Started
-                </Button>
+                <SignInButton mode="modal">
+                  <Button variant="ghost" size="sm" className="justify-start">
+                    Sign In
+                  </Button>
+                </SignInButton>
+                <SignUpButton mode="modal">
+                  <Button variant="default" size="sm">
+                    Get Started
+                  </Button>
+                </SignUpButton>
               </div>
             </nav>
           </motion.div>
