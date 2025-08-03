@@ -5,7 +5,7 @@
 ### 1. Clerk Authentication ✅
 Your Clerk integration is ready with the publishable key: `pk_test_ZXhhY3QtY3JheWZpc2gtNDQuY2xlcmsuYWNjb3VudHMuZGV2JA`
 
-### 2. Convex Database Setup 🔧
+### 2. Convex Database Setup ✅
 
 To complete the Convex integration:
 
@@ -20,12 +20,12 @@ To complete the Convex integration:
    ```
 
 3. **Follow the prompts to**:
-   - Create a new Convex project
-   - Connect to your account
+   - Create a new Convex project or connect to existing
    - Deploy the schema and functions
+   - Get your deployment URL
 
 4. **Update the Convex URL**:
-   - After setup, replace the placeholder URL in `src/main.tsx` with your actual Convex URL
+   - After setup, replace `https://your-convex-deployment-url.convex.cloud` in `src/main.tsx` with your actual Convex URL
 
 ### 3. Features Implemented ✅
 
@@ -45,18 +45,15 @@ To complete the Convex integration:
    - Get your product ID and replace `your-product-id` in the upgrade buttons
 
 2. **Configure Webhook**:
-   - In Polar.sh dashboard, add webhook URL: `https://your-project.supabase.co/functions/v1/polar-webhook`
-   - Set webhook secret in Supabase secrets as `POLAR_WEBHOOK_SECRET`
+   - In Polar.sh dashboard, add webhook URL: `https://your-convex-deployment.convex.site/polar-webhook`
    - Subscribe to events: `subscription.created`, `subscription.updated`, `subscription.cancelled`, `subscription.expired`
-
-3. **Supabase Setup**:
-   - Run the migration: `supabase db reset` to create the users table
-   - Deploy the webhook function: `supabase functions deploy polar-webhook`
 
 ### 5. Next Steps
 
-1. Replace `your-product-id` with your actual Polar.sh product ID
-2. Build the image editor canvas functionality  
-3. Add background removal with @imgly/background-removal
+1. Run `npx convex dev` to set up your Convex project
+2. Replace `your-product-id` with your actual Polar.sh product ID
+3. Replace the Convex URL in main.tsx with your deployment URL
+4. Build the image editor canvas functionality  
+5. Add background removal with @imgly/background-removal
 
-The app now has complete authentication, database, and payment infrastructure!
+The app now has complete authentication, Convex database, and payment infrastructure!
