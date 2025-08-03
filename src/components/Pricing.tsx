@@ -118,7 +118,14 @@ export function Pricing() {
                     </div>
                   ))}
                 </div>
-                <Button variant="premium" className="w-full">
+                <Button 
+                  variant="premium" 
+                  className="w-full"
+                  onClick={() => {
+                    // Polar.sh checkout - replace with your actual product ID
+                    window.open('https://polar.sh/checkout/your-product-id', '_blank')
+                  }}
+                >
                   Upgrade to Pro
                 </Button>
               </CardContent>

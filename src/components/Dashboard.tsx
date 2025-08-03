@@ -59,7 +59,13 @@ export function Dashboard() {
             
             <div className="flex items-center gap-4">
               {!userStats.isPro && (
-                <Button variant="premium" size="sm">
+                <Button 
+                  variant="premium" 
+                  size="sm"
+                  onClick={() => {
+                    window.open('https://polar.sh/checkout/your-product-id', '_blank')
+                  }}
+                >
                   <Crown className="w-4 h-4 mr-2" />
                   Upgrade to Pro
                 </Button>
@@ -121,7 +127,13 @@ export function Dashboard() {
                 </div>
 
                 {!userStats.isPro && (
-                  <Button variant="premium" className="w-full">
+                  <Button 
+                    variant="premium" 
+                    className="w-full"
+                    onClick={() => {
+                      window.open('https://polar.sh/checkout/your-product-id', '_blank')
+                    }}
+                  >
                     <Crown className="w-4 h-4 mr-2" />
                     Upgrade for $4.99/mo
                   </Button>

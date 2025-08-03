@@ -36,11 +36,27 @@ To complete the Convex integration:
 - **Feature Gating**: Pro-only features clearly marked
 - **Responsive Design**: Mobile-friendly with smooth animations
 
-### 4. Next Steps
+### 4. Polar.sh Integration ✅
 
-1. Set up your Convex project following the instructions above
-2. Integrate Polar.sh for payments (webhook to update subscription status)
-3. Build the image editor canvas functionality
-4. Add background removal with @imgly/background-removal
+**Payments Setup**:
+1. **Create Polar.sh Product**:
+   - Sign up at https://polar.sh
+   - Create a $4.99/month subscription product
+   - Get your product ID and replace `your-product-id` in the upgrade buttons
 
-The app now has a complete authentication and database foundation ready for the core image editing features!
+2. **Configure Webhook**:
+   - In Polar.sh dashboard, add webhook URL: `https://your-project.supabase.co/functions/v1/polar-webhook`
+   - Set webhook secret in Supabase secrets as `POLAR_WEBHOOK_SECRET`
+   - Subscribe to events: `subscription.created`, `subscription.updated`, `subscription.cancelled`, `subscription.expired`
+
+3. **Supabase Setup**:
+   - Run the migration: `supabase db reset` to create the users table
+   - Deploy the webhook function: `supabase functions deploy polar-webhook`
+
+### 5. Next Steps
+
+1. Replace `your-product-id` with your actual Polar.sh product ID
+2. Build the image editor canvas functionality  
+3. Add background removal with @imgly/background-removal
+
+The app now has complete authentication, database, and payment infrastructure!
