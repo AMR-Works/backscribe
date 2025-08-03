@@ -1,6 +1,5 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
 import { ClerkProvider } from '@clerk/clerk-react'
 // import { ConvexProvider, ConvexReactClient } from 'convex/react'
 import { ThemeProvider } from 'next-themes'
@@ -20,16 +19,14 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
       {/* <ConvexProvider client={convex}> */}
-        <BrowserRouter>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <App />
-          </ThemeProvider>
-        </BrowserRouter>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <App />
+        </ThemeProvider>
       {/* </ConvexProvider> */}
     </ClerkProvider>
   </StrictMode>,
