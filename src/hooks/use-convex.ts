@@ -1,51 +1,28 @@
 import { useUser } from "@clerk/clerk-react";
-import { useState, useEffect } from "react";
+import { useQuery, useMutation } from "convex/react";
+import { api } from "../../convex/_generated/api";
 
-// Mock implementation until Convex is properly set up
 export function useUserData() {
   const { user } = useUser();
-  const [userData, setUserData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    if (user) {
-      // Simulate API call with mock data
-      setTimeout(() => {
-        setUserData({
-          userId: user.id,
-          email: user.emailAddresses[0]?.emailAddress || "",
-          paid: false,
-          subscriptionId: null,
-          imagesGenerated: 2,
-          lastResetAt: new Date().toISOString(),
-        });
-        setIsLoading(false);
-      }, 1000);
-    } else {
-      setIsLoading(false);
-    }
-  }, [user]);
+  
+  const userData = useQuery(
+    api.users.getOrCreateUser,
+    user ? {
+      userId: user.id,
+      email: user.emailAddresses[0]?.emailAddress || "",
+    } : "skip"
+  );
 
   return {
     userData,
-    isLoading: isLoading && !!user,
+    isLoading: userData === undefined && !!user,
     user,
   };
 }
 
 export function useImageGeneration() {
-  const incrementGeneration = async (userId: string) => {
-    console.log("Incrementing generation for user:", userId);
-    return {
-      imagesGenerated: 3,
-      maxImages: 5,
-      canGenerate: true
-    };
-  };
-
-  const logGeneration = async (data: any) => {
-    console.log("Logging generation:", data);
-  };
+  const incrementGeneration = useMutation(api.users.incrementImageGeneration);
+  const logGeneration = useMutation(api.analytics.logGeneration);
 
   return {
     incrementGeneration,

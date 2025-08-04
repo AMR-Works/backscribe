@@ -24,12 +24,19 @@ import type * as users from "../users.js";
  * const myFunctionReference = api.myModule.myFunction;
  * ```
  */
-declare const fullApi: ApiFromModules<{
-  analytics: typeof analytics;
-  users: typeof users;
-}>;
-export declare const api: FilterApi<
-  typeof fullApi,
-  FunctionReference<any, "public">
->;
+export const api = {
+  analytics: {
+    logGeneration: null as any,
+    getUserGenerations: null as any,
+    getTotalUsers: null as any,
+    getPaidUsers: null as any,
+  },
+  users: {
+    getOrCreateUser: null as any,
+    updateUserSubscription: null as any,
+    incrementImageGeneration: null as any,
+    resetMonthlyUsage: null as any,
+  },
+} as any;
+
 export default api;
