@@ -15,6 +15,7 @@ import {
   Sparkles,
   Zap
 } from "lucide-react"
+import { TextBehindEditor } from "@/components/TextBehindEditor"
 
 export function Dashboard() {
   const { userData, isLoading } = useUserData()
@@ -155,61 +156,7 @@ export function Dashboard() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                {/* Upload Area */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="border-2 border-dashed border-border rounded-lg p-12 text-center bg-muted/30 hover:bg-muted/50 transition-colors cursor-pointer group"
-                >
-                  <Upload className="w-12 h-12 text-muted-foreground mx-auto mb-4 group-hover:text-primary transition-colors" />
-                  <h3 className="text-lg font-semibold mb-2">Upload Your Image</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Drag and drop or click to select an image
-                  </p>
-                  <Button variant="outline">
-                    Choose File
-                  </Button>
-                </motion.div>
-
-                {/* Tools Preview */}
-                <div className="grid md:grid-cols-3 gap-4 mt-8">
-                  <Card className="bg-muted/30">
-                    <CardContent className="pt-4">
-                      <Type className="w-8 h-8 text-primary mb-2" />
-                      <h4 className="font-semibold mb-1">Typography</h4>
-                      <p className="text-sm text-muted-foreground">
-                        {userStats.isPro ? 'All Google Fonts' : '6 Beautiful Fonts'}
-                      </p>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="bg-muted/30">
-                    <CardContent className="pt-4">
-                      <Palette className="w-8 h-8 text-primary mb-2" />
-                      <h4 className="font-semibold mb-1">Colors & Effects</h4>
-                      <p className="text-sm text-muted-foreground">
-                        Full color control + shadows
-                      </p>
-                    </CardContent>
-                  </Card>
-
-                  <Card className={`${userStats.isPro ? 'bg-muted/30' : 'bg-muted/10 border-dashed'}`}>
-                    <CardContent className="pt-4">
-                      <RotateCcw className={`w-8 h-8 mb-2 ${userStats.isPro ? 'text-primary' : 'text-muted-foreground'}`} />
-                      <div className="flex items-center gap-2 mb-1">
-                        <h4 className={`font-semibold ${!userStats.isPro && 'text-muted-foreground'}`}>
-                          3D Effects
-                        </h4>
-                        {!userStats.isPro && (
-                          <Badge variant="secondary" className="text-xs">Pro</Badge>
-                        )}
-                      </div>
-                      <p className="text-sm text-muted-foreground">
-                        Tilt & rotation effects
-                      </p>
-                    </CardContent>
-                  </Card>
-                </div>
+                <TextBehindEditor />
               </CardContent>
             </Card>
           </div>

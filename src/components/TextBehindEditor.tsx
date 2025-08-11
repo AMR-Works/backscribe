@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -64,6 +64,19 @@ export const TextBehindEditor: React.FC = () => {
     return bgImg.naturalWidth / bgImg.naturalHeight;
   }, [bgImg]);
 
+  const [previewH, setPreviewH] = useState(0);
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        setPreviewH(entry.contentRect.height);
+      }
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -78,6 +91,7 @@ export const TextBehindEditor: React.FC = () => {
         const blob = await removeBackground(file as File, {
           // model options are internal; defaults are OK. Keeping simple for compatibility
           debug: false,
+          publicPath: "https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.4.5/dist/",
         } as any);
         const objUrl = URL.createObjectURL(blob as Blob);
         const fg = await loadImageFromUrl(objUrl);
@@ -349,7 +363,7 @@ export const TextBehindEditor: React.FC = () => {
                   opacity: l.opacity,
                   fontFamily: l.fontFamily,
                   fontWeight: l.fontWeight as any,
-                  fontSize: `${(l.fontSizeNorm * 100).toFixed(3)}vh`, // roughly scale with container height
+                  fontSize: `${Math.max(1, l.fontSizeNorm * previewH).toFixed(2)}px`,
                   letterSpacing: `${l.letterSpacingEm}em`,
                   pointerEvents: "auto",
                   cursor: "move",
