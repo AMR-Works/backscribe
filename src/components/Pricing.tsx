@@ -118,16 +118,28 @@ export function Pricing() {
                     </div>
                   ))}
                 </div>
-                <Button 
-                  variant="premium" 
-                  className="w-full"
-                  onClick={() => {
-                    // Polar.sh checkout - replace with your actual product ID
-                    window.open('https://polar.sh/checkout/your-product-id', '_blank')
-                  }}
-                >
-                  Upgrade to Pro
-                </Button>
+                <div className="space-y-3">
+                  <Button 
+                    variant="premium" 
+                    className="w-full"
+                    onClick={() => {
+                      window.open('https://polar.sh/checkout/c2254f2f-5232-4ac5-8273-b944892fafa6', '_blank')
+                    }}
+                    aria-label="Upgrade to Pro monthly"
+                  >
+                    Upgrade to Pro — Monthly
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    className="w-full"
+                    onClick={() => {
+                      window.open('https://polar.sh/checkout/fa492b59-47e2-40c1-827f-b9f46e0b5fa1', '_blank')
+                    }}
+                    aria-label="Upgrade to Pro yearly"
+                  >
+                    Upgrade to Pro — Yearly
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           </motion.div>

@@ -64,7 +64,7 @@ export function Dashboard() {
                   variant="premium" 
                   size="sm"
                   onClick={() => {
-                    window.open('https://polar.sh/checkout/your-product-id', '_blank')
+                    window.open('https://polar.sh/checkout/c2254f2f-5232-4ac5-8273-b944892fafa6', '_blank')
                   }}
                 >
                   <Crown className="w-4 h-4 mr-2" />
@@ -132,7 +132,7 @@ export function Dashboard() {
                     variant="premium" 
                     className="w-full"
                     onClick={() => {
-                      window.open('https://polar.sh/checkout/your-product-id', '_blank')
+                      window.open('https://polar.sh/checkout/c2254f2f-5232-4ac5-8273-b944892fafa6', '_blank')
                     }}
                   >
                     <Crown className="w-4 h-4 mr-2" />
