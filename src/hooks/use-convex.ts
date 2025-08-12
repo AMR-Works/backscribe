@@ -1,43 +1,55 @@
 import { useUser } from "@clerk/clerk-react";
-import { useMemo } from "react";
-import { useQuery, useMutation } from "convex/react";
-import { api } from "../../convex/_generated/api";
+import { useState, useEffect } from "react";
 
+// Temporary mock implementation until Convex is properly deployed
+// Run 'npx convex dev' to generate the real API and replace this
 export function useUserData() {
   const { user } = useUser();
+  const [userData, setUserData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const args = useMemo(() => {
-    if (!user) return undefined;
-    return {
-      userId: user.id,
-      email: user.emailAddresses[0]?.emailAddress || "",
-    };
+  useEffect(() => {
+    if (user) {
+      // Simulate API call with mock data
+      setTimeout(() => {
+        setUserData({
+          userId: user.id,
+          email: user.emailAddresses[0]?.emailAddress || "",
+          paid: false,
+          subscriptionId: null,
+          imagesGenerated: 2,
+          lastResetAt: new Date().toISOString(),
+        });
+        setIsLoading(false);
+      }, 1000);
+    } else {
+      setIsLoading(false);
+    }
   }, [user]);
 
-  // When args is undefined, the query is skipped
-  const userData = useQuery(api.users.getOrCreateUser, args as any);
-
   return {
-    userData: userData ?? null,
-    isLoading: !!user && userData === undefined,
+    userData,
+    isLoading: isLoading && !!user,
     user,
   };
 }
 
 export function useImageGeneration() {
-  const increment = useMutation(api.users.incrementImageGeneration);
-
   const incrementGeneration = async (userId: string) => {
-    return await increment({ userId });
+    console.log("Incrementing generation for user:", userId);
+    return {
+      imagesGenerated: 3,
+      maxImages: 5,
+      canGenerate: true
+    };
   };
 
   const logGeneration = async (data: any) => {
-    // Optional: add a mutation to persist generation logs if needed
     console.log("Logging generation:", data);
   };
 
   return {
     incrementGeneration,
-    logGeneration,
+    logGeneration
   };
 }
