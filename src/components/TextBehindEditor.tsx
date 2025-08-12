@@ -222,17 +222,18 @@ export const TextBehindEditor: React.FC = () => {
     const y = layer.yNorm * imgH;
     ctx.translate(x, y);
 
-    // Rotation and tilt (skew)
+    // Rotation and tilt (skew) — apply skew THEN rotate to match CSS
     const rot = (layer.rotationDeg * Math.PI) / 180;
     const skewX = Math.tan((layer.tiltXDeg * Math.PI) / 180);
     const skewY = Math.tan((layer.tiltYDeg * Math.PI) / 180);
-    ctx.rotate(rot);
     ctx.transform(1, skewY, skewX, 1, 0, 0);
+    ctx.rotate(rot);
 
     // Styles
     ctx.globalAlpha = layer.opacity;
     ctx.fillStyle = layer.color;
     ctx.textBaseline = "top";
+    ctx.textAlign = "left";
     ctx.font = `${layer.fontWeight} ${fontSizePx}px ${layer.fontFamily}`;
 
     // Letter spacing drawing
@@ -357,7 +358,7 @@ export const TextBehindEditor: React.FC = () => {
                 style={{
                   left: `${l.xNorm * 100}%`,
                   top: `${l.yNorm * 100}%`,
-                  transform: `translate(-0%, -0%) rotate(${l.rotationDeg}deg) skew(${l.tiltYDeg}deg, ${l.tiltXDeg}deg)`,
+                  transform: `skew(${l.tiltXDeg}deg, ${l.tiltYDeg}deg) rotate(${l.rotationDeg}deg)`,
                   transformOrigin: "top left",
                   color: l.color,
                   opacity: l.opacity,
